@@ -3,7 +3,7 @@ services:
   - type: web
     name: syncluence-backend
     runtime: node
-    rootDir: Backend
+    rootDir: backend
     buildCommand: npm install
     startCommand: npm start
     envVars:
