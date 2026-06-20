@@ -48,15 +48,15 @@ export default function BrandAuth() {
         credential: credentialResponse.credential,
         role: "brand",
       });
-      if (data.role !== "brand") {
-        toast.error(
-          data.role === "admin"
-            ? "This Google account is registered as Admin. Use the admin login page."
-            : "This Google account is registered as a Creator, not a Brand."
-        );
+      if (data.role === "admin") {
+        toast.error("This Google account is registered as Admin. Use the admin login page.");
         return;
       }
       loginGoogle(data);
+      if (data.role === "influencer") {
+        toast.success("Logged in as Creator");
+        navigate("/influencer/dashboard");
+      }
     } catch (err) {
       toast.error(err.response?.data?.message || "Google login failed");
     }
